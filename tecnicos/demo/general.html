@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>iCase Técnicos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F4EF; --card:#FFFFFF; --ink:#14213D; --muted:#5A6472; --line:#E3DFD5;
+  --navy:#14213D; --teal:#1D6B63; --teal-bg:#DCEDEB; --orange:#B5531A; --orange-bg:#FFF1E6;
+  --red:#A23B2C; --red-bg:#FBE9E6; --gray:#6B7280; --gray-bg:#EEECE7; --track:#ECE8DF;
+  --head:#14213D; --head-ink:#FFFFFF; --head-muted:#C9D0DD; --accent:#F2B48C;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1524; --card:#18213A; --ink:#EEF1F7; --muted:#A7B0C2; --line:#2A3553;
+    --teal:#6CC3B8; --teal-bg:#173A39; --orange:#F2A26F; --orange-bg:#3A2618;
+    --red:#F08C7C; --red-bg:#3A1E1B; --gray:#A7B0C2; --gray-bg:#232C45; --track:#26304B;
+    --head:#0A1020; --navy:#8FA6D9;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Public Sans',Arial,sans-serif;-webkit-text-size-adjust:100%}
+h1,h2,.num{font-family:'Space Grotesk',Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header{background:var(--head);color:var(--head-ink);padding:28px 0 24px}
+header .kicker{margin:0;font-size:12px;font-weight:700;letter-spacing:2px;color:var(--accent)}
+header h1{margin:6px 0 6px;font-size:32px;line-height:1.1}
+header .meta{margin:0;font-size:14px;color:var(--head-muted)}
+.banner{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:var(--orange-bg);color:var(--ink);font-size:14px;line-height:1.45;border:1px solid var(--orange)}
+.tramos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0 8px}
+.tr{border-radius:14px;padding:12px 14px;border:1px solid var(--line);background:var(--card)}
+.tr p{margin:0}
+.tr .lab{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--muted)}
+.tr .val{font-size:22px;font-weight:700;margin-top:2px}
+.tr .sub{font-size:12px;color:var(--muted)}
+.tr.obj{background:var(--teal-bg);border-color:transparent}
+.tr.mb{background:var(--navy);border-color:transparent}
+.tr.mb .lab,.tr.mb .sub{color:#C9D0DD}.tr.mb .val{color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tr.mb{background:#24345E}}
+.cond{margin:6px 0 0;font-size:13px;color:var(--muted);line-height:1.45}
+.resumen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:20px 0 6px}
+.rs{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.rs p{margin:0}.rs .n{font-size:26px;font-weight:700}.rs .t{font-size:12px;color:var(--muted)}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 12px}
+.filtros button{font:inherit;font-size:14px;min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card h2{margin:0;font-size:19px;line-height:1.2}
+.card .loc{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.badge{flex:none;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;white-space:nowrap}
+.b-debajo{background:var(--red-bg);color:var(--red)}
+.b-minimo{background:var(--gray-bg);color:var(--ink)}
+.b-objetivo{background:var(--teal-bg);color:var(--teal)}
+.b-muy_bueno{background:var(--navy);color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-muy_bueno{background:#24345E}}
+.big{display:flex;align-items:baseline;gap:6px;margin:12px 0 10px}
+.big .num{font-size:40px;font-weight:700;line-height:1}
+.big .u{font-size:14px;color:var(--muted)}
+.bar{position:relative;height:14px;border-radius:7px;background:var(--track);margin:6px 0 8px}
+.esc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:0 0 12px}
+.esc div{border-radius:10px;padding:6px 8px;background:var(--gray-bg)}
+.esc .e-obj{background:var(--teal-bg)}
+.esc .e-mb{background:var(--track)}
+.esc p{margin:0}.esc .k{font-size:11px;color:var(--muted)}.esc .v{font-size:15px;font-weight:700}
+.esc .hit{outline:2px solid var(--ink)}
+.fill{position:absolute;left:0;top:0;bottom:0;border-radius:7px}
+.f-debajo{background:var(--red)}.f-minimo{background:var(--gray)}.f-objetivo{background:var(--teal)}.f-muy_bueno{background:var(--navy)}
+.mk{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--ink);opacity:.55}
+.pj{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--orange)}
+.lines p{margin:4px 0;font-size:14px;line-height:1.4}
+.lines .ok{color:var(--teal);font-weight:600}
+.pie{font-size:13px;color:var(--muted);line-height:1.5;padding:4px 0 32px}
+.vacio{padding:24px;text-align:center;color:var(--muted)}
+#gate{position:fixed;inset:0;background:var(--head);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
+#gate[hidden]{display:none}
+#gate form{background:#fff;color:#14213D;border-radius:18px;padding:24px;width:340px;max-width:100%}
+#gate h1{margin:0 0 4px;font-size:22px}
+#gate p{margin:0 0 14px;font-size:14px;color:#5A6472}
+#gate label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+#gate input{width:100%;font:inherit;font-size:16px;padding:12px;border:1px solid #CFCBC1;border-radius:10px;margin-bottom:10px}
+#gate button{width:100%;font:inherit;font-weight:700;font-size:16px;min-height:46px;border:0;border-radius:10px;background:#14213D;color:#fff;cursor:pointer}
+#gate .err{color:#A23B2C;font-size:13px;margin:0 0 10px;display:none}
+@media (max-width:560px){
+  .tr{padding:10px}.tr .val{font-size:18px}.tr .lab{font-size:10px;letter-spacing:1px}
+  .resumen{grid-template-columns:repeat(2,minmax(0,1fr))}
+  header h1{font-size:28px}
+}
+.solo{max-width:520px;margin:0 auto}
+.solo .card{padding:20px;margin-top:16px}
+.solo .big .num{font-size:52px}
+.salir{font:inherit;font-size:14px;min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;margin:8px 0 0}
+#gate input{text-transform:uppercase;letter-spacing:3px}
+</style>
+</head>
+<body>
+<div id="gate" hidden>
+  <form id="gform" autocomplete="off">
+    <h1>iCase Técnicos</h1>
+    <p>Tu avance del mes. Ingresá tu código personal; te lo pasa Capacitación.</p>
+    <label for="pw">Tu código</label>
+    <input id="pw" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="12" required>
+    <p class="err" id="perr" role="alert">Código incorrecto. Revisalo y probá de nuevo.</p>
+    <button type="submit" id="gbtn">Ver mi avance</button>
+  </form>
+</div>
+<div id="app"></div>
+<script>
+const DATA0 = {"mes_nombre": "Noviembre 2026", "mes_tramos": "Noviembre 2026", "modo": "normal", "corte": "20/11/2026", "generado": "20/11/2026 12:36", "dias_mes": 30, "dias_transcurridos": 20, "dias_restantes": 10, "pagos": {"minimo": 1500, "objetivo": 2500, "muy_bueno": 3500}, "tecnicos": [{"tecnico": "Diego Demo", "local": "FX03", "minimo": 200, "objetivo": 240, "muy_bueno": 280, "unidades": 290, "proyeccion": 435, "tramo": "muy_bueno", "tramo_proy": "muy_bueno", "siguiente": null, "siguiente_key": null, "falta": 0, "por_dia": null, "pct_obj": 1.2083}, {"tecnico": "Carla Demo", "local": "FX03", "minimo": 250, "objetivo": 300, "muy_bueno": 350, "unidades": 305, "proyeccion": 458, "tramo": "objetivo", "tramo_proy": "muy_bueno", "siguiente": "Muy bueno", "siguiente_key": "muy_bueno", "falta": 45, "por_dia": 4.5, "pct_obj": 1.0167}, {"tecnico": "Ana Demo", "local": "FX01", "minimo": 300, "objetivo": 360, "muy_bueno": 420, "unidades": 310, "proyeccion": 465, "tramo": "minimo", "tramo_proy": "muy_bueno", "siguiente": "Objetivo", "siguiente_key": "objetivo", "falta": 50, "por_dia": 5.0, "pct_obj": 0.8611}, {"tecnico": "Elena Demo", "local": "FX04", "minimo": 350, "objetivo": 400, "muy_bueno": 460, "unidades": 250, "proyeccion": 375, "tramo": "debajo", "tramo_proy": "minimo", "siguiente": "Mínimo", "siguiente_key": "minimo", "falta": 100, "por_dia": 10.0, "pct_obj": 0.625}, {"tecnico": "Bruno Demo", "local": "FX02", "minimo": 400, "objetivo": 450, "muy_bueno": 520, "unidades": 230, "proyeccion": 345, "tramo": "debajo", "tramo_proy": "debajo", "siguiente": "Mínimo", "siguiente_key": "minimo", "falta": 170, "por_dia": 17.0, "pct_obj": 0.5111}]};
+const ENC = null;
+const KEY = 'demo_tablero_tecnicos_codigo';
+const fmt = n => n.toLocaleString('es-AR');
+const money = n => '$' + n.toLocaleString('es-AR');
+const LAB = {debajo:'Debajo del mínimo', minimo:'Mínimo', objetivo:'Objetivo', muy_bueno:'Muy bueno'};
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let FILTRO = 'Todos';
+
+function card(t, D, yo){
+  const max = t.muy_bueno * 1.12;
+  const pos = v => Math.min(100, v / max * 100).toFixed(2) + '%';
+  const projLine = D.dias_restantes > 0
+    ? `<p>Proyección a fin de mes: <b>${fmt(t.proyeccion)} u</b> → ${LAB[t.tramo_proy]}</p>` : '';
+  const quien = yo ? 'Te faltan' : 'Le faltan';
+  let next;
+  if (!t.siguiente) next = `<p class="ok">${yo ? 'Llegaste' : 'Llegó'} a Muy bueno.</p>`;
+  else if (t.por_dia != null) next = `<p>${quien} <b>${fmt(t.falta)} u</b> para ${t.siguiente} · unas ${String(t.por_dia).replace('.', ',')} por día</p>`;
+  else next = `<p>${yo ? 'Te faltaron' : 'Le faltaron'} <b>${fmt(t.falta)} u</b> para ${t.siguiente}</p>`;
+  const aria = `${t.unidades} unidades vendidas. Mínimo ${t.minimo}, objetivo ${t.objetivo}, muy bueno ${t.muy_bueno}.`;
+  return `<article class="card">
+    <div class="top"><div><h2>${esc(t.tecnico)}</h2><p class="loc">${esc(t.local)}</p></div>
+    <span class="badge b-${t.tramo}">${LAB[t.tramo]}</span></div>
+    <div class="big"><span class="num">${fmt(t.unidades)}</span><span class="u">unidades vendidas</span></div>
+    <div class="bar" role="img" aria-label="${aria}">
+      <div class="fill f-${t.tramo}" style="width:${pos(t.unidades)}"></div>
+      ${D.dias_restantes > 0 ? `<div class="pj" style="left:${pos(t.proyeccion)}" title="Proyección"></div>` : ''}
+      <div class="mk" style="left:${pos(t.minimo)}"></div>
+      <div class="mk" style="left:${pos(t.objetivo)}"></div>
+      <div class="mk" style="left:${pos(t.muy_bueno)}"></div>
+    </div>
+    <div class="esc">
+      <div class="${t.unidades>=t.minimo?'hit':''}"><p class="k">Mínimo</p><p class="v num">${fmt(t.minimo)}</p></div>
+      <div class="e-obj ${t.unidades>=t.objetivo?'hit':''}"><p class="k">Objetivo</p><p class="v num">${fmt(t.objetivo)}</p></div>
+      <div class="e-mb ${t.unidades>=t.muy_bueno?'hit':''}"><p class="k">Muy bueno</p><p class="v num">${fmt(t.muy_bueno)}</p></div>
+    </div>
+    <div class="lines">${next}${projLine}</div>
+  </article>`;
+}
+
+function cabecera(D, titulo){
+  return `<header><div class="wrap">
+    <p class="kicker">DEMO · DATOS DE EJEMPLO · ICASE TÉCNICOS</p>
+    <h1>${esc(titulo)}</h1>
+    <p class="meta">${esc(D.modo === 'vista_previa' ? D.mes_tramos : D.mes_nombre)} · ventas al ${esc(D.corte)} · día ${D.dias_transcurridos} de ${D.dias_mes} · actualizado ${esc(D.generado)}</p>
+  </div></header>`;
+}
+function previa(D){
+  return D.modo === 'vista_previa'
+    ? `<p class="banner"><b>Vista previa.</b> Muestra las ventas de ${esc(D.mes_nombre.toLowerCase())} contra los tramos de ${esc(D.mes_tramos.toLowerCase())}, para ver cómo funciona. Desde el 1° del mes se cuenta de cero.</p>` : '';
+}
+function tramosHTML(D){
+  return `<section class="tramos" aria-label="Tramos de pago">
+      <div class="tr"><p class="lab">MÍNIMO</p><p class="val num">${money(D.pagos.minimo)}</p><p class="sub">por reparación</p></div>
+      <div class="tr obj"><p class="lab">OBJETIVO</p><p class="val num">${money(D.pagos.objetivo)}</p><p class="sub">por reparación</p></div>
+      <div class="tr mb"><p class="lab">MUY BUENO</p><p class="val num">${money(D.pagos.muy_bueno)}</p><p class="sub">por reparación</p></div>
+    </section>`;
+}
+const PIE = `<p class="pie">Cuentan todas las unidades que vende el técnico, netas de devoluciones: accesorios, reparaciones, usados, Mantenimiento PIN y colocación de vidrio. Los tramos son para un mes completo de trabajo; si tenés vacaciones o licencia, se ajustan. La línea punteada naranja es la proyección a fin de mes con el ritmo actual. Dudas: tu supervisor o Capacitación.</p>`;
+
+function renderUno(D){
+  const t = D.tecnico;
+  document.getElementById('app').innerHTML = cabecera(D, 'Hola, ' + t.tecnico.split(' ')[0]) + `
+  <main class="wrap"><div class="solo">
+    ${previa(D)}
+    ${card(t, D, true)}
+    ${tramosHTML(D)}
+    ${PIE}
+    <button type="button" class="salir" id="salir">Salir / usar otro código</button>
+    <p style="height:24px"></p>
+  </div></main>`;
+  document.getElementById('salir').addEventListener('click', () => { try { localStorage.removeItem(KEY); } catch(e) {} location.reload(); });
+}
+
+function renderTodos(D){
+  const locs = ['Todos', ...Array.from(new Set(D.tecnicos.map(t => t.local))).sort()];
+  const lista = D.tecnicos.filter(t => FILTRO === 'Todos' || t.local === FILTRO);
+  const cnt = k => D.tecnicos.filter(t => t.tramo === k).length;
+  document.getElementById('app').innerHTML = cabecera(D, 'Todos los técnicos (uso interno)') + `
+  <main class="wrap">
+    ${previa(D)}
+    ${tramosHTML(D)}
+    <section class="resumen" aria-label="Cuántos técnicos hay en cada tramo">
+      <div class="rs"><p class="n num">${cnt('muy_bueno')}</p><p class="t">en Muy bueno</p></div>
+      <div class="rs"><p class="n num">${cnt('objetivo')}</p><p class="t">en Objetivo</p></div>
+      <div class="rs"><p class="n num">${cnt('minimo')}</p><p class="t">en Mínimo</p></div>
+      <div class="rs"><p class="n num">${cnt('debajo')}</p><p class="t">debajo del mínimo</p></div>
+    </section>
+    <nav class="filtros" aria-label="Filtrar por local">
+      ${locs.map(l => `<button type="button" data-l="${esc(l)}" aria-pressed="${l === FILTRO}">${esc(l)}</button>`).join('')}
+    </nav>
+    <section class="lista">${lista.length ? lista.map(t => card(t, D, false)).join('') : '<p class="vacio">Sin técnicos para este local.</p>'}</section>
+    ${PIE}
+  </main>`;
+  document.querySelectorAll('.filtros button').forEach(b => b.addEventListener('click', () => { FILTRO = b.dataset.l; renderTodos(D); }));
+}
+
+const b64d = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const hex = a => Array.from(a, b => b.toString(16).padStart(2, '0')).join('');
+const norm = s => s.toUpperCase().replace(/[^A-Z0-9]/g, '');
+async function abrir(codigo){
+  const km = await crypto.subtle.importKey('raw', new TextEncoder().encode(norm(codigo)), 'PBKDF2', false, ['deriveBits']);
+  const bits = new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2', salt:b64d(ENC.salt), iterations:ENC.iter, hash:'SHA-256'}, km, 384));
+  const blob = ENC.blobs[hex(bits.slice(32, 48))];
+  if (!blob) throw new Error('codigo');
+  const key = await crypto.subtle.importKey('raw', bits.slice(0, 32), {name:'AES-GCM'}, false, ['decrypt']);
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64d(blob.iv)}, key, b64d(blob.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+async function start(){
+  if (DATA0) { renderTodos(DATA0); return; }
+  let saved = null; try { saved = localStorage.getItem(KEY); } catch(e) {}
+  if (saved) { try { renderUno(await abrir(saved)); return; } catch(e) {} }
+  const gate = document.getElementById('gate'); gate.hidden = false;
+  const inp = document.getElementById('pw'), err = document.getElementById('perr'), btn = document.getElementById('gbtn');
+  setTimeout(() => inp.focus(), 50);
+  document.getElementById('gform').addEventListener('submit', async ev => {
+    ev.preventDefault(); err.style.display = 'none'; btn.disabled = true; btn.textContent = 'Buscando…';
+    try {
+      const D = await abrir(inp.value);
+      try { localStorage.setItem(KEY, norm(inp.value)); } catch(e) {}
+      gate.hidden = true; renderUno(D);
+    } catch(e) { err.style.display = 'block'; inp.select(); }
+    btn.disabled = false; btn.textContent = 'Ver mi avance';
+  });
+}
+start();
+</script>
+</body>
+</html>

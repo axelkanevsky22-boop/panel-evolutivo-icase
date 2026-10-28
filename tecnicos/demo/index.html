@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Demo Tablero Técnicos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: una banda de encabezado y una columna de 880px con las dos vistas lado a lado, que se apilan en el celular. Mismos colores y letras que la plataforma real. */
+:root{
+  --bg:#F6F4EF; --card:#FFFFFF; --ink:#14213D; --muted:#5A6472; --line:#E3DFD5;
+  --head:#14213D; --head-ink:#FFFFFF; --head-muted:#C9D0DD; --accent:#F2B48C;
+  --orange:#B5531A; --orange-bg:#FFF1E6; --teal:#1D6B63; --teal-bg:#DCEDEB; --red:#A23B2C; --red-bg:#FBE9E6; --gray-bg:#EEECE7;
+  --btn:#14213D; --btn-ink:#FFFFFF;
+  --f-display:'Space Grotesk', Arial, sans-serif; --f-body:'Public Sans', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0F1524; --card:#18213A; --ink:#EEF1F7; --muted:#A7B0C2; --line:#2A3553;
+  --head:#0A1020; --orange:#F2A26F; --orange-bg:#3A2618; --teal:#6CC3B8; --teal-bg:#173A39; --red:#F08C7C; --red-bg:#3A1E1B; --gray-bg:#232C45;
+  --btn:#F2B48C; --btn-ink:#14213D; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0F1524; --card:#18213A; --ink:#EEF1F7; --muted:#A7B0C2; --line:#2A3553;
+  --head:#0A1020; --orange:#F2A26F; --orange-bg:#3A2618; --teal:#6CC3B8; --teal-bg:#173A39; --red:#F08C7C; --red-bg:#3A1E1B; --gray-bg:#232C45;
+  --btn:#F2B48C; --btn-ink:#14213D; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+header{background:var(--head);color:var(--head-ink)}
+header .wrap{padding-block:36px 32px;display:flex;flex-direction:column;gap:8px}
+.kicker{margin:0;font-size:12px;font-weight:700;letter-spacing:2px;color:var(--accent)}
+h1{margin:0;font-family:var(--f-display);font-size:clamp(30px,6vw,42px);line-height:1.1;text-wrap:balance}
+header p.sub{margin:0;color:var(--head-muted);max-width:60ch}
+main .wrap{padding-block:28px 40px;display:flex;flex-direction:column;gap:28px}
+.aviso{margin:0;padding:12px 16px;border-radius:12px;background:var(--orange-bg);border:1px solid var(--orange);font-size:15px}
+.vistas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:700px){.vistas{grid-template-columns:1fr}}
+.vista{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.vista h2{margin:0;font-family:var(--f-display);font-size:22px}
+.vista .para{margin:0;font-size:13px;font-weight:700;letter-spacing:1.5px;color:var(--muted)}
+.vista p{margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 20px;border-radius:10px;background:var(--btn);color:var(--btn-ink);font-weight:700;text-decoration:none;align-self:flex-start}
+.btn:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.tabla{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th{text-align:left;font-size:12px;letter-spacing:1px;color:var(--muted);font-weight:700;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+code{font-family:var(--f-display);font-weight:700;font-size:16px;letter-spacing:1px}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.p-mb{background:var(--ink);color:var(--bg)}.p-obj{background:var(--teal-bg);color:var(--teal)}.p-min{background:var(--gray-bg);color:var(--ink)}.p-deb{background:var(--red-bg);color:var(--red)}
+section.probar h2{margin:0 0 10px;font-family:var(--f-display);font-size:22px}
+.probar ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px;max-width:68ch}
+.pie{margin:0;font-size:14px;color:var(--muted)}
+.pie a{color:var(--orange)}
+body{margin:0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <p class="kicker">ICASE TÉCNICOS · DEMO</p>
+  <h1>Probá el tablero de técnicos</h1>
+  <p class="sub">Para que Nico, Ninela y Alexia vean cómo funciona antes de explicárselo al equipo.</p>
+</div></header>
+
+<main><div class="wrap">
+  <p class="aviso"><b>Son datos inventados.</b> Los técnicos, locales y unidades de esta demo no son reales. La plataforma real está en <a href="https://icase-tecnicos.netlify.app" style="color:inherit">icase-tecnicos.netlify.app</a>.</p>
+
+  <div class="vistas">
+    <article class="vista">
+      <p class="para">LO QUE VE CADA TÉCNICO</p>
+      <h2>Ficha personal</h2>
+      <p>Entrá con uno de estos códigos de prueba. Cada código abre solo la ficha de ese técnico.</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Código</th><th>Técnico</th><th>Hoy está en</th></tr></thead>
+        <tbody>
+          <tr><td><code>DEMO01</code></td><td>Ana · FX01</td><td><span class="pill p-min">Mínimo</span></td></tr>
+          <tr><td><code>DEMO02</code></td><td>Bruno · FX02</td><td><span class="pill p-deb">Debajo</span></td></tr>
+          <tr><td><code>DEMO03</code></td><td>Carla · FX03</td><td><span class="pill p-obj">Objetivo</span></td></tr>
+          <tr><td><code>DEMO04</code></td><td>Diego · FX03</td><td><span class="pill p-mb">Muy bueno</span></td></tr>
+          <tr><td><code>DEMO05</code></td><td>Elena · FX04</td><td><span class="pill p-deb">Debajo</span></td></tr>
+        </tbody>
+      </table></div>
+      <a class="btn" href="tecnico.html">Abrir vista del técnico</a>
+    </article>
+
+    <article class="vista">
+      <p class="para">LO QUE VE SUPERVISIÓN</p>
+      <h2>Vista general</h2>
+      <p>Los 5 técnicos juntos, cuántos hay en cada tramo y un filtro por local. En la plataforma real esta vista es interna y no está en el link público.</p>
+      <p>Sirve para el seguimiento: ver quién no llega y a quién hay que acompañar.</p>
+      <a class="btn" href="general.html">Abrir vista general</a>
+    </article>
+  </div>
+
+  <section class="probar">
+    <h2>Qué probar</h2>
+    <ol>
+      <li>Entrá con <code>DEMO03</code> y ubicá en la ficha el tramo, las unidades, la línea naranja de proyección y cuánto le falta por día.</li>
+      <li>Tocá <b>Salir / usar otro código</b> y entrá con <code>DEMO02</code>: así se ve alguien que está lejos del mínimo.</li>
+      <li>Escribí un código inventado para ver el mensaje de error.</li>
+      <li>En la vista general, filtrá por FX03 y compará a Carla con Diego.</li>
+      <li>Ensayá cómo le explicarías la ficha a un técnico en un minuto.</li>
+    </ol>
+  </section>
+
+  <p class="pie">Corte de ejemplo: 20/11, día 20 de 30. Tramos de pago de noviembre: $1.500, $2.500 y $3.500 por reparación.</p>
+</div></main>
+</body>
+</html>
